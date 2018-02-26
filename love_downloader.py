@@ -5,6 +5,7 @@ from zipfile import ZipFile
 
 from bitness import Bitness
 from platform import Platform
+from version import Version
 
 
 class LoveDownloader:
@@ -20,7 +21,7 @@ class LoveDownloader:
 
         return path.exists() and path.is_dir() and (path / "love.exe").exists()
 
-    def download(self, version: str) -> bool:
+    def download(self, version: Version) -> bool:
         """ Downloads the specified version to /love, if it hasn't already been
             downloaded.
         """
@@ -36,13 +37,15 @@ class LoveDownloader:
         else:
             url = self.construct_url(version, folder)
 
+            print(url)
+
             with urlopen(url) as response:
                 with ZipFile(BytesIO(response.read())) as zipfile:
                     zipfile.extractall(path)
 
         return True
 
-    def get_version_folder_name(self, version: str) -> str:
+    def get_version_folder_name(self, version: Version) -> str:
         """ Works out what the folder should be called from the version
             number
 
@@ -60,7 +63,7 @@ class LoveDownloader:
 
         return name.format(version=version, bitness=bitness, platform=platform)
 
-    def construct_url(self, version: str, folder: str) -> str:
+    def construct_url(self, version: Version, folder: str) -> str:
         """ Returns the bitbucket zip file for the specified folder name.
         """
         url = ("https://bitbucket.org/rude/love/downloads/{folder}.zip")
