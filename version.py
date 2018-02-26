@@ -5,14 +5,18 @@ class Version:
         self.version_str = version
         self.split_version = version.split(".")
 
+        self.major = self.major()
+        self.minor = self.minor()
+        self.patch = self.patch()
+
     def major(self) -> int:
-        return self.split_version[0]
+        return int(self.split_version[0])
 
     def minor(self) -> int:
-        return self.split_version[1]
+        return int(self.split_version[1])
 
     def patch(self) -> int:
-        return self.split_version[2]
+        return int(self.split_version[2])
 
     def __str__(self):
         return self.version_str

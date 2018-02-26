@@ -61,6 +61,13 @@ class LoveDownloader:
         if self.platform == Platform.Windows:
             platform = "win"
 
+        if self.platform == Platform.Windows:
+            if version.minor <= 8 and version.major == 0:
+                if bitness == "32":
+                    bitness = "-x86"
+                else:
+                    bitness = "-x64"
+
         return name.format(version=version, bitness=bitness, platform=platform)
 
     def construct_url(self, version: Version, folder: str) -> str:
