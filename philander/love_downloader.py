@@ -3,9 +3,9 @@ from io import BytesIO
 from urllib.request import urlopen
 from zipfile import ZipFile
 
-from bitness import Bitness
-from platform import Platform
-from version import Version
+from .bitness import Bitness
+from .platform import Platform
+from .version import Version
 
 
 class LoveDownloader:

@@ -2,7 +2,7 @@ from zipfile import ZipFile
 from pathlib import Path
 import re
 
-from version import Version
+from .version import Version
 
 
 class Game:
