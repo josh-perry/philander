@@ -52,7 +52,6 @@ def main():
             print("löve version '{}' is not installed.".format(version))
             sys.exit(0)
 
-    # TODO: Make this (more) platform independent
     call([config.values["commands"].get(version), args.game, unknown_args])
 
 
