@@ -28,8 +28,8 @@ def main():
     if not version:
         try:
             game = Game(Path(args.game))
-            print("löve game version:", version)
-            version = version
+            print("löve game version:", game.version)
+            version = game.version
         except RuntimeError as e:
             print("Could not determine version: ", e)
             version = config.values["philander"].get("defaultVersion")

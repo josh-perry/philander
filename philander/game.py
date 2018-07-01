@@ -3,7 +3,7 @@ from pathlib import Path
 import re
 
 
-class Game:
+class Game(object):
     """Represents a LÖVE game"""
     def __init__(self, path: Path) -> None:
         """Constructor"""
