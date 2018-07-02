@@ -15,9 +15,9 @@ from . import platform
 def main():
     config.read()
 
-    parser = parser = argparse.ArgumentParser(description="LÖVE launcher")
-    parser.add_argument("--version", help="Version override")
-    parser.add_argument("game", help="The .love file")
+    parser = parser = argparse.ArgumentParser(prog="phil", description="LÖVE launcher", epilog="Additional, unrecognized arguments will be passed to the love executable.")
+    parser.add_argument("--version", "-v", help="If passed, use the specified version instead of determining it from the love application.")
+    parser.add_argument("game", help="The .love file or love application directory.")
     args, unknown_args = parser.parse_known_args()
 
     if len(sys.argv) < 2:
