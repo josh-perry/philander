@@ -39,12 +39,14 @@ def main():
                 sys.exit(0)
 
     if config.values["commands"].get(version) is None:
-        if platform.current == platform.Platform.Windows and not config.values["philander"].get("downloadUrl") is None:
-            love_path = Path(config.values["philander"].get("loveDirectory")) / version
+        download_dir = config.values["philander"].get("downloadDirectory")
+        download_url = config.values["philander"].get("downloadUrl")
+        if platform.current == platform.Platform.Windows and download_dir is not None and download_url is not None:
+            love_path = Path(download_dir) / version
             love_exe_path = love_path / "love.exe"
             if not love_path.exists() or not love_exe_path.exists():
                 print("Downloading löve version '{}'..".format(version))
-                download_url = config.values["philander"].get("downloadUrl").format(version=version)
+                download_url = download_url.format(version=version)
                 download(download_url, str(love_path))
             config.values["commands"][version] = str(love_exe_path)
             config.write()

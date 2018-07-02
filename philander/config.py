@@ -22,11 +22,11 @@ def set_default():
     values = ConfigParser()
 
     values["philander"] = {
-        "loveDirectory": str(_config_dir / "love"),
         "defaultVersion": "11.1",
     }
 
     if platform.current == platform.Platform.Windows:
+        values["philander"]["downloadDirectory"] = str(_config_dir / "love")
         values["philander"]["downloadUrl"] = "https://bitbucket.org/rude/love/downloads/love-{version}-win32.zip"
 
     values["commands"] = {}
@@ -39,8 +39,4 @@ def read():
     else:
         set_default()
         write()
-
-    if values["philander"].get("loveDirectory") is None:
-        print("[philander]/loveDirectory configuration value is mandatory!")
-        sys.exit(0)
 

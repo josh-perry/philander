@@ -22,8 +22,8 @@ Additional arguments are passed to löve as well and you may override the versio
 This is my current configuration:
 ```ini
 [philander]
-lovedirectory = C:\Users\Joel\AppData\Roaming\philander\love
 defaultversion = 11.1
+downloaddirectory = C:\Users\Joel\AppData\Roaming\philander\love
 downloadurl = https://bitbucket.org/rude/love/downloads/love-{version}-win32.zip
 
 [commands]
@@ -32,7 +32,7 @@ downloadurl = https://bitbucket.org/rude/love/downloads/love-{version}-win32.zip
 0.9.2 = C:\Users\Joel\AppData\Roaming\philander\love\0.9.2\love.exe
 ```
 
-* `lovedirectory` is the directory the löve versions are saved in.
+* `downloaddirectory` is the directory the löve versions are saved in.
 * `defaultversion` will be used if the version can not be determined (e.g. because of a missing conf.lua)
 * `downloadurl` is the url that will be used for downloading missing löve versions. Adjust this if you want 64-bit löve (32-bit is default) instead.
 
