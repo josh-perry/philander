@@ -12,6 +12,6 @@ setup(name='philander',
         "appdirs",
     ],
     entry_points = {
-        'console_scripts': ['philander=philander:main'],
+        'console_scripts': ['phil=philander:main'],
     },
     zip_safe=True)

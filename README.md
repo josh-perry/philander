@@ -7,13 +7,13 @@ If the appropriate version is not yet installed, it will be downloaded automatic
 Just call `pip install -e .` (`-e` - *editable* for easier updating via git) in the root of this repository and start the application once to initialize the configuration file.
 
 # Usage
-When starting a löve application via the command line, just replace `love` (or `love.exe`) with `philander`, i.e.:
+When starting a löve application via the command line, just replace `love` (or `love.exe`) with `phil`, i.e.:
 ```console
-$ philander game.love
+$ phil game.love
 
-$ philander game.love --foo
+$ phil game.love --foo
 
-$ philander --version 0.10.2 game.love
+$ phil --version 0.10.2 game.love
 ```
 
 Additional arguments are passed to löve as well and you may override the version (especially useful if the version can not be determined, but you know the correct version).
