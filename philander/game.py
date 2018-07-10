@@ -2,10 +2,8 @@ from zipfile import ZipFile
 from pathlib import Path
 import re
 
-from version import Version
 
-
-class Game:
+class Game(object):
     """Represents a LÖVE game"""
     def __init__(self, path: Path) -> None:
         """Constructor"""
@@ -18,12 +16,12 @@ class Game:
 
         self.has_main: bool = self.get_has_main()
         self.has_conf: bool = self.get_has_conf()
-        self.version: Version = None
+        self.version: str = None
 
         if self.has_conf:
             self.version = self.get_version_from_conf()
         else:
-            raise Exception("No conf.lua found!")
+            raise RuntimeError("No conf.lua found!")
 
     def get_is_love_file(self) -> bool:
         return self.path.is_file() and str(self.path).endswith(".love")
@@ -44,7 +42,7 @@ class Game:
         conf_path: Path = self.path / "conf.lua"
         return conf_path.exists()
 
-    def get_version_from_conf(self) -> Version:
+    def get_version_from_conf(self) -> str:
         """Returns the version string from conf.lua"""
 
         # Assert that we should even be trying to read conf.lua
@@ -69,9 +67,9 @@ class Game:
         matches = list(filter(None, matches))
 
         if len(matches) > 1:
-            raise Exception("More than one version found in conf.lua!")
+            raise RuntimeError("More than one version found in conf.lua!")
 
         if len(matches) == 0:
-            raise Exception("No version found in conf.lua!")
+            raise RuntimeError("No version found in conf.lua!")
 
-        return Version(matches[0][0])
+        return matches[0][0]
