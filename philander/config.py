@@ -28,6 +28,7 @@ def set_default():
     if platform.current == platform.Platform.Windows:
         values["philander"]["downloadDirectory"] = str(_config_dir / "love")
         values["philander"]["downloadUrl"] = "https://bitbucket.org/rude/love/downloads/{filename}"
+        values["philander"]["downloadBitness"] = "32"
 
     values["commands"] = {}
 

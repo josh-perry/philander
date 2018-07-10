@@ -15,13 +15,15 @@ from .version import Version
 
 def get_download_filename(version_string):
     version = Version(version_string)
+    bitness = config.values["philander"].get("downloadBitness")
 
     if version.major == 0 and version.minor <= 8:
-        filename = "love-{filename}-win-x86.zip".format(filename=version)
+        bitness = "86" if bitness == "32" else "64"
+        filename = "love-{filename}-win-x{bits}.zip"
     else:
-        filename = "love-{filename}-win32.zip".format(filename=version)
+        filename = "love-{filename}-win{bits}.zip"
 
-    return filename
+    return filename.format(filename=version, bits=bitness)
 
 
 def main():
