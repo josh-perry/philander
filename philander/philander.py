@@ -27,16 +27,13 @@ def get_download_filename(version_string):
 
 
 def main():
-    config.read()
-
     parser = parser = argparse.ArgumentParser(prog="phil", description="LÖVE launcher", epilog="Additional, unrecognized arguments will be passed to the love executable.")
     parser.add_argument("--version", "-v", help="If passed, use the specified version instead of determining it from the love application.")
+    parser.add_argument("--ignorecwdconfig", "-i", action="store_true", help="Ignores a philander.ini in the cwd if it is present. Otherwise config files in that file would overwrite the ones in the regular config.")
     parser.add_argument("game", help="The .love file or love application directory.")
     args, unknown_args = parser.parse_known_args()
 
-    if len(sys.argv) < 2:
-        print("No game provided!")
-        sys.exit(0)
+    config.read(args.ignorecwdconfig)
 
     version = args.version
     if not version:

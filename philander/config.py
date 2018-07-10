@@ -32,12 +32,20 @@ def set_default():
 
     values["commands"] = {}
 
-def read():
+def read(ignore_cwd_config=False):
     global values
     if _config_path.exists():
         values = ConfigParser()
-        values.read(_config_path)
+        read_files = values.read(_config_path)
+        if len(read_files) == 0:
+            raise IOError("Could not read config.")
     else:
         set_default()
         write()
 
+    cwd_config_path = Path("philander.ini")
+    if not ignore_cwd_config and cwd_config_path.exists():
+        print("Reading philander.ini in current working directory.")
+        read_files = values.read(cwd_config_path)
+        if len(read_files) == 0:
+            raise IOError("Could not read config in current working directory.")
