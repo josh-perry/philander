@@ -10,6 +10,18 @@ from .game import Game
 from .download_love import download
 from . import config
 from . import platform
+from .version import Version
+
+
+def get_download_filename(version_string):
+    version = Version(version_string)
+
+    if version.major == 0 and version.minor <= 8:
+        filename = "love-{filename}-win-x86.zip".format(filename=version)
+    else:
+        filename = "love-{filename}-win32.zip".format(filename=version)
+
+    return filename
 
 
 def main():
@@ -46,7 +58,7 @@ def main():
             love_exe_path = love_path / "love.exe"
             if not love_path.exists() or not love_exe_path.exists():
                 print("Downloading löve version '{}'..".format(version))
-                download_url = download_url.format(version=version)
+                download_url = download_url.format(filename=get_download_filename(version))
                 download(download_url, str(love_path))
             config.values["commands"][version] = str(love_exe_path)
             config.write()
